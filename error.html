@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*修改过onerror处理之后，控制台可能不会显示错误信息。错误可以由自己处理。
+	但是依然是会中断当前事件队列中正在运行这个事件的运行。从事件队列中拿下一个事件来运行。
+	如果在控制台运行错误代码，依然会在控制台报错。*/
+	window.onerror=testError;   
+	function testError(){   
+		arglen=arguments.length;   
+		var errorMsg="参数个数："+arglen+"个";   
+		for(var i=0;i<arglen;i++){   
+			errorMsg+="/n参数"+(i+1)+"："+arguments[i];   
+		}   
+		alert(errorMsg);   
+		window.onerror=null;   
+		return true;   
+	}   
+	setTimeout(function() {
+		console.log('这里依然可以运行的');
+
+	}, 10);
+	function test(){   
+		error   
+	}   
+	test() 
+	b = 5;
+	console.log(b)
+</script></body>
+</html>
