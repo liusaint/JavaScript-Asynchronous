@@ -79,7 +79,7 @@
 
 (function() {
 
-	// return;
+	return;
 	// then中的return会传递到下一个then的success中。
 	// promise的then，会在第一个有fail回调的then中执行，如果有return,会在下一个回调的success中执行。
 
@@ -118,5 +118,33 @@
 			console.log(data, 'fail')
 		}
 	)
+
+})();
+
+
+(function(){
+	// https://www.zhihu.com/question/62305365
+	const pro = new Promise((resolve, reject) => {
+		console.log(1);
+		 // 1246735
+		const pro1 = new Promise((resolve, reject) => {
+			console.log(2)
+			setTimeout(() => {
+				console.log(3)
+				resolve(3);
+			}, 0);
+		});
+		resolve(4);
+		console.log(4)
+		pro1.then((args) => {
+			console.log(5)
+			// console.log(args);
+		});
+	});
+	console.log(6)
+	pro.then((args) => {
+		console.log(7)
+		// console.log(args);
+	});
 
 })();
